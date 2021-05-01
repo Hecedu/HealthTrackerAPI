@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HealthTrackerAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,7 +50,8 @@ namespace HealthTrackerAPI.Migrations
                 name: "UserActivityLogs",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ActiveMinutes = table.Column<int>(type: "int", nullable: false),
@@ -58,14 +59,15 @@ namespace HealthTrackerAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserActivityLogs", x => x.Id);
+                    table.PrimaryKey("PK_UserActivityLogs", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserMealLogs",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -73,7 +75,7 @@ namespace HealthTrackerAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserMealLogs", x => x.Id);
+                    table.PrimaryKey("PK_UserMealLogs", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(

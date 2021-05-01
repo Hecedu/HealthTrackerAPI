@@ -33,6 +33,14 @@ namespace HealthTrackerAPI.Models
            context.UserMealLogs.Remove(userMealLog);
            await context.SaveChangesAsync();
         }
+        public async Task DeleteUserMealLogsAsync(string userId)
+        {
+            foreach (UserMealLog userMealLog in context.UserMealLogs.Where(log => log.UserId == userId))
+            {
+                context.UserMealLogs.Remove(userMealLog);
+            }
+            await context.SaveChangesAsync();
+        }
         public async Task<IEnumerable<UserMealLog>> GetAllUserMealLogs()
         {
             return await EntityFrameworkQueryableExtensions.ToListAsync(context.UserMealLogs);
@@ -56,6 +64,14 @@ namespace HealthTrackerAPI.Models
         public async Task DeleteUserActivityLogAsync(UserActivityLog userActivityLog)
         {
             context.UserActivityLogs.Remove(userActivityLog);
+            await context.SaveChangesAsync();
+        }
+        public async Task DeleteUserActivityLogsAsync(string userId)
+        {
+            foreach (UserActivityLog userActivityLog in context.UserActivityLogs.Where(log => log.UserId == userId))
+            {
+                context.UserActivityLogs.Remove(userActivityLog);
+            }
             await context.SaveChangesAsync();
         }
         public async Task<IEnumerable<UserActivityLog>> GetAllUserActivityLogs()

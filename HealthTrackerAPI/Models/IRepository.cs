@@ -12,11 +12,13 @@ namespace HealthTrackerAPI.Models
         public Task AddUserMealLogAsync(UserMealLog userMealLog);
         public Task AddUserMealLogsAsync(IEnumerable<UserMealLog> userMealLogs);
         public Task DeleteUserMealLogAsync(UserMealLog userMealLog);
+        public Task DeleteUserMealLogsAsync(string userId);
+
         public Task<IEnumerable<UserActivityLog>> GetAllUserActivityLogs();
         public Task<IEnumerable<UserActivityLog>> GetUserActivityLogs(string userId);
         public Task AddUserActivityLogAsync(UserActivityLog userActivityLog);
         public Task AddUserActivityLogsAsync(IEnumerable<UserActivityLog> userActivityLogs);
         public Task DeleteUserActivityLogAsync(UserActivityLog userActivtyLog);
-
+        public Task DeleteUserActivityLogsAsync(string userId);
     }
 }

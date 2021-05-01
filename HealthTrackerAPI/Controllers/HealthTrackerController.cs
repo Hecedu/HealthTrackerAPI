@@ -45,7 +45,7 @@ namespace HealthTrackerAPI.Controllers
         public async Task<IActionResult> AddMealLogs([FromBody] IEnumerable<UserMealLog> userMealLogs)
         {
             await SqlRepository.AddUserMealLogsAsync(userMealLogs);
-            return Ok(new Response { Status = "Success", Message = "Added UserMealLog Successfuly" });
+            return Ok(new Response { Status = "Success", Message = "Added UserMealLogs Successfuly" });
         }
         [HttpPost]
         [Route("DeleteMealLog")]
@@ -100,6 +100,15 @@ namespace HealthTrackerAPI.Controllers
         public async Task<IEnumerable<UserActivityLog>> GetAllActivityLogs()
         {
             return await SqlRepository.GetAllUserActivityLogs();
+        }
+
+        [HttpPost]
+        [Route("DeleteUserLogs")]
+        public async Task<IActionResult> DeleteUserLogs(string userId)
+        {
+            await SqlRepository.DeleteUserActivityLogsAsync(userId);
+            await SqlRepository.DeleteUserMealLogsAsync(userId);
+            return Ok(new Response { Status = "Success", Message = $"Deleted all logs with user Id: {userId}" });
         }
     }
 }
